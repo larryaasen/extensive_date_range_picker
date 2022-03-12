@@ -109,6 +109,8 @@ void main() {
             base: DateTime(2021, 3, 18),
           ).phrase(),
           "Mar 15, 2021 - Mar 21, 2021");
+      expect(DateTimeRangeRelative(earliest: "-44d", latest: "44d", base: DateTime(2021, 4, 18)).phrase(),
+          "Mar 4, 2021 - Jun 1, 2021");
     }
 
     expect(
@@ -125,8 +127,6 @@ void main() {
           base: DateTime(2021, 4, 18),
         ).phrase(),
         "Apr 8, 2021 - Apr 28, 2021");
-    expect(DateTimeRangeRelative(earliest: "-44d", latest: "44d", base: DateTime(2021, 4, 18)).phrase(),
-        "Mar 4, 2021 - Jun 1, 2021");
   });
 
   test('test relative phrase errors', () {
