@@ -1,7 +1,15 @@
+// ignore_for_file: avoid_print
+
 import 'package:extensive_date_range_picker/src/date_time_range.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  final now = DateTime.now();
+  final tzName = now.timeZoneName;
+  final tzOffset = now.timeZoneOffset;
+  final isUTC = now.isUtc;
+  print('Time zone name: $tzName, offset=$tzOffset');
+
   test('test previous year', () {
     final range =
         DateTimeRangeRelative(earliest: "-1y@-y", latest: "-1y@y", base: DateTime(2017, 9, 7, 17, 30));
@@ -70,36 +78,39 @@ void main() {
     e(const DateTimeRangeRelative(earliest: "now", latest: "12d").phrase(), "Next 12 days");
     e(const DateTimeRangeRelative(earliest: "now", latest: "112d").phrase(), "Next 112 days");
 
-    // Daylight Saving Time 2021 - 3/14/2021
-    expect(
-        DateTimeRangeRelative(
-          earliest: "-4d",
-          latest: "4d",
-          base: DateTime(2021, 3, 18),
-        ).phrase(),
-        "Mar 13, 2021 - Mar 22, 2021");
+    if (!isUTC) {
+      // Daylight Saving Time 2021 - 3/14/2021
+      expect(
+          DateTimeRangeRelative(
+            earliest: "-4d",
+            latest: "4d",
+            base: DateTime(2021, 3, 18),
+          ).phrase(),
+          "Mar 13, 2021 - Mar 22, 2021");
 
-    expect(
-        DateTimeRangeRelative(
-          earliest: "-1d",
-          latest: "1d",
-          base: DateTime(2021, 3, 18),
-        ).phrase(),
-        "Mar 17, 2021 - Mar 19, 2021");
-    expect(
-        DateTimeRangeRelative(
-          earliest: "-2d",
-          latest: "2d",
-          base: DateTime(2021, 3, 18),
-        ).phrase(),
-        "Mar 16, 2021 - Mar 20, 2021");
-    expect(
-        DateTimeRangeRelative(
-          earliest: "-3d",
-          latest: "3d",
-          base: DateTime(2021, 3, 18),
-        ).phrase(),
-        "Mar 15, 2021 - Mar 21, 2021");
+      expect(
+          DateTimeRangeRelative(
+            earliest: "-1d",
+            latest: "1d",
+            base: DateTime(2021, 3, 18),
+          ).phrase(),
+          "Mar 17, 2021 - Mar 19, 2021");
+      expect(
+          DateTimeRangeRelative(
+            earliest: "-2d",
+            latest: "2d",
+            base: DateTime(2021, 3, 18),
+          ).phrase(),
+          "Mar 16, 2021 - Mar 20, 2021");
+      expect(
+          DateTimeRangeRelative(
+            earliest: "-3d",
+            latest: "3d",
+            base: DateTime(2021, 3, 18),
+          ).phrase(),
+          "Mar 15, 2021 - Mar 21, 2021");
+    }
+
     expect(
         DateTimeRangeRelative(
           earliest: "-8d",
