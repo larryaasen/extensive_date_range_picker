@@ -7,8 +7,8 @@ void main() {
   final now = DateTime.now();
   final tzName = now.timeZoneName;
   final tzOffset = now.timeZoneOffset;
-  final isUTC = now.isUtc;
-  print('Time zone name: $tzName, offset=$tzOffset');
+  final isUTC = tzOffset.inHours == 0 && tzOffset.inMinutes == 0;
+  print('Time zone name: $tzName, isUTC=$isUTC, utc=${now.isUtc}, offset=$tzOffset');
 
   test('test days - daylight saving time', () {
     if (!isUTC) {
