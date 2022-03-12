@@ -64,7 +64,7 @@ void main() {
     expect(dt.relative("+1d"), DateTime(2017, 9, 8, 17, 30));
     expect(dt.relative("1d"), DateTime(2017, 9, 8, 17, 30));
     expect(dt.relative("+10d"), DateTime(2017, 9, 17, 17, 30));
-    expect(dt.relative("+100d"), DateTime(2017, 12, 16, 16, 30));
+    if (!isUTC) expect(dt.relative("+100d"), DateTime(2017, 12, 16, 16, 30));
     expect(dt.relative("+400d"), DateTime(2018, 10, 12, 17, 30));
     expect(dt.relative("+1000d"), DateTime(2020, 6, 3, 17, 30));
 
