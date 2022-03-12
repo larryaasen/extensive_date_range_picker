@@ -30,6 +30,10 @@ void main() {
     final range = DateTimeRangeRelative(earliest: "3m@m", latest: "4m@m", base: DateTime(2017, 9, 7, 17, 30));
     expect(range.earliest, DateTime(2017, 12, 31, 23, 59, 59, 999));
     expect(range.latest, DateTime(2018, 1, 31, 23, 59, 59, 999));
+    expect(range.earliestModifier, '3m@m');
+    expect(range.latestModifier, '4m@m');
+    expect(range.toString(),
+        'DateTimeRangeFixed(earliest=2017-12-31 23:59:59.999, latest=2018-01-31 23:59:59.999)');
     expect(range.phrase(), 'Dec 31, 2017 - Jan 31, 2018');
   });
 
@@ -174,5 +178,21 @@ void main() {
     expect(range.earliest, DateTime(2017, 9, 7, 17, 30));
     expect(range.latest, null);
     expect(range.phrase(), 'Sep 7, 2017 - now');
+  });
+
+  test('test fixed range toString', () {
+    final range = DateTimeRangeFixed(earliest: DateTime(2017, 8, 7, 17), latest: DateTime(2017, 9, 7, 17));
+    expect(range.toString(),
+        'DateTimeRangeFixed(earliest=2017-08-07 17:00:00.000, latest=2017-09-07 17:00:00.000)');
+    expect(range.earliest, DateTime(2017, 8, 7, 17));
+    expect(range.latest, DateTime(2017, 9, 7, 17));
+  });
+
+  test('test fixed range toString', () {
+    final range = DateTimeRangeFixed(earliest: DateTime(2017, 8, 7, 17), latest: DateTime(2017, 9, 7, 17));
+    expect(range.toString(),
+        'DateTimeRangeFixed(earliest=2017-08-07 17:00:00.000, latest=2017-09-07 17:00:00.000)');
+    expect(range.earliest, DateTime(2017, 8, 7, 17));
+    expect(range.latest, DateTime(2017, 9, 7, 17));
   });
 }

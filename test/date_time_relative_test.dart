@@ -51,6 +51,14 @@ void main() {
     }
   });
 
+  test('test errors', () {
+    final dt = DateTime(2017, 9, 7, 17, 30); // ==> 09/07/2017 17:30:00
+    expect(dt.relative("-0d"), DateTime(2017, 9, 7, 17, 30));
+    expect(dt.relative("-0a"), isNull);
+    expect(dt.relative("@+d"), DateTime(2017, 9, 7, 23, 59, 59, 999));
+    expect(dt.relative("@+a"), isNull);
+  });
+
   test('test days', () {
     final dt = DateTime(2017, 9, 7, 17, 30); // ==> 09/07/2017 17:30:00
     expect(dt.relative("-0d"), DateTime(2017, 9, 7, 17, 30));

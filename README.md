@@ -6,7 +6,7 @@ Flutter widget that provides an extensive date and time range picker.
 [![codecov](https://codecov.io/gh/larryaasen/extensive_date_range_picker/branch/main/graph/badge.svg)](https://app.codecov.io/gh/larryaasen/extensive_date_range_picker)
 [![pub package](https://img.shields.io/pub/v/extensive_date_range_picker.svg)](https://pub.dev/packages/extensive_date_range_picker)
 <a href="https://www.buymeacoffee.com/larryaasen">
-  <img alt="Gift me a coffee" src="https://img.shields.io/badge/Donate-Buy%20Me%20A%20Coffee-yellow.svg">
+  <img alt="Gift me a coffee" src="https://img.shields.io/badge/Donate-Gift%20Me%20A%20Coffee-yellow.svg">
 </a>
 
 Works on Android, iOS, desktop, and web.
