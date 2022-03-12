@@ -2,17 +2,45 @@ import 'package:extensive_date_range_picker/src/date_time_relative.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('test days', () {
+  test('test days - daylight saving time', () {
     // Daylight Saving Time 2021 - 3/14/2021
     // These 3 tests only work when local time is ET. They do not work on UTC.
     // expect(DateTime(2021, 3, 18).relative("-4d"), DateTime(2021, 3, 13, 23));
     // expect(DateTime(2021, 3, 18).relative("-3d"), DateTime(2021, 3, 15));
     // expect(DateTime(2021, 3, 18, 12).relative("-4d"), DateTime(2021, 3, 14, 12));
 
-    expect(DateTime.utc(2021, 3, 18).relative("-4d").toString(), '2021-03-13 19:00:00.000');
-    expect(DateTime.utc(2021, 3, 18).relative("-3d").toString(), '2021-03-14 20:00:00.000');
-    expect(DateTime.utc(2021, 3, 18, 12).relative("-4d").toString(), '2021-03-14 08:00:00.000');
+    final d1 = DateTime.utc(2021, 3, 18).relative("-4d");
+    expect(d1, isNotNull);
+    expect(d1!.day, 13);
+    expect(d1.month, 3);
+    expect(d1.year, 2021);
+    expect(d1.hour, 19);
+    expect(d1.minute, 0);
+    expect(d1.second, 0);
+    expect(d1.millisecond, 0);
 
+    final d2 = DateTime.utc(2021, 3, 18).relative("-3d");
+    expect(d2, isNotNull);
+    expect(d2!.day, 14);
+    expect(d2.month, 3);
+    expect(d2.year, 2021);
+    expect(d2.hour, 20);
+    expect(d2.minute, 0);
+    expect(d2.second, 0);
+    expect(d2.millisecond, 0);
+
+    final d3 = DateTime.utc(2021, 3, 18, 12).relative("-4d");
+    expect(d3, isNotNull);
+    expect(d3!.day, 14);
+    expect(d3.month, 3);
+    expect(d3.year, 2021);
+    expect(d3.hour, 8);
+    expect(d3.minute, 0);
+    expect(d3.second, 0);
+    expect(d3.millisecond, 0);
+  });
+
+  test('test days', () {
     final dt = DateTime(2017, 9, 7, 17, 30); // ==> 09/07/2017 17:30:00
     expect(dt.relative("-0d"), DateTime(2017, 9, 7, 17, 30));
     expect(dt.relative("-1d"), DateTime(2017, 9, 6, 17, 30));
