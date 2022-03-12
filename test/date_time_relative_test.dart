@@ -1,6 +1,5 @@
 import 'package:extensive_date_range_picker/src/date_time_relative.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:jiffy/jiffy.dart';
 
 void main() {
   test('test days', () {
