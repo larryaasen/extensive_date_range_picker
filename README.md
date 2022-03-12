@@ -3,7 +3,7 @@
 Flutter widget that provides an extensive date and time range picker.
 
 [![Build Status](https://travis-ci.com/larryaasen/extensive_date_range_picker.svg?branch=main)](https://app.travis-ci.com/github/larryaasen/extensive_date_range_picker)
-[![pub package](https://img.shields.io/pub/v/extensive_date_range_picker.svg)](https://pub.dartlang.org/packages/extensive_date_range_picker)
+[![pub package](https://img.shields.io/pub/v/extensive_date_range_picker.svg)](https://pub.dev/packages/extensive_date_range_picker)
 
 Works on Android, iOS, desktop, and web.
 
