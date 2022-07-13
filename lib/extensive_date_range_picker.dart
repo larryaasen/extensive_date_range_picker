@@ -304,10 +304,10 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
                         DropdownButton(
                           value: _relativeEarliestValue,
                           items: const [
-                            DropdownMenuItem(child: Text("Days Ago"), value: "d"),
-                            DropdownMenuItem(child: Text("Weeks Ago"), value: "w"),
-                            DropdownMenuItem(child: Text("Months Ago"), value: "m"),
-                            DropdownMenuItem(child: Text("Years Ago"), value: "y"),
+                            DropdownMenuItem(value: "d", child: Text("Days Ago")),
+                            DropdownMenuItem(value: "w", child: Text("Weeks Ago")),
+                            DropdownMenuItem(value: "m", child: Text("Months Ago")),
+                            DropdownMenuItem(value: "y", child: Text("Years Ago")),
                           ],
                           onChanged: (dynamic value) {
                             setState(() {
@@ -362,11 +362,11 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
                         DropdownButton(
                           value: _relativeLatestValue,
                           items: const [
-                            DropdownMenuItem(child: Text('Now'), value: 'now'),
-                            DropdownMenuItem(child: Text("Days Ago"), value: "d"),
-                            DropdownMenuItem(child: Text("Weeks Ago"), value: "w"),
-                            DropdownMenuItem(child: Text("Months Ago"), value: "m"),
-                            DropdownMenuItem(child: Text("Years Ago"), value: "y"),
+                            DropdownMenuItem(value: 'now', child: Text('Now')),
+                            DropdownMenuItem(value: "d", child: Text("Days Ago")),
+                            DropdownMenuItem(value: "w", child: Text("Weeks Ago")),
+                            DropdownMenuItem(value: "m", child: Text("Months Ago")),
+                            DropdownMenuItem(value: "y", child: Text("Years Ago")),
                           ],
                           onChanged: (dynamic value) {
                             setState(() {
@@ -588,6 +588,13 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
     final DialogTheme dialogTheme = Theme.of(context).dialogTheme;
     return Dialog(
       backgroundColor: Colors.grey[200],
+      insetPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+      // The default dialog shape is radius 2 rounded rect, but the spec has
+      // been updated to 4, so we will use that here for the Date Picker, but
+      // only if there isn't one provided in the theme.
+      shape: dialogTheme.shape ??
+          const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4.0))),
+      clipBehavior: Clip.antiAlias,
       child: AnimatedContainer(
         width: dialogSize.width,
         height: dialogSize.height,
@@ -606,13 +613,6 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
           }),
         ),
       ),
-      insetPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
-      // The default dialog shape is radius 2 rounded rect, but the spec has
-      // been updated to 4, so we will use that here for the Date Picker, but
-      // only if there isn't one provided in the theme.
-      shape: dialogTheme.shape ??
-          const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4.0))),
-      clipBehavior: Clip.antiAlias,
     );
   }
 }

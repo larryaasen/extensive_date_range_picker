@@ -266,7 +266,7 @@ class CustomDropdownButton extends StatefulWidget {
   final Color? dropdownColor;
 
   @override
-  _CustomDropdownButtonState createState() => _CustomDropdownButtonState();
+  State<CustomDropdownButton> createState() => _CustomDropdownButtonState();
 }
 
 class _CustomDropdownButtonState<T> extends State<CustomDropdownButton> with WidgetsBindingObserver {
