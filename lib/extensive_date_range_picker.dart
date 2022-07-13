@@ -12,6 +12,7 @@ import 'src/date_time_range.dart';
 
 export 'src/custom_dropdown.dart';
 export 'src/date_time_range.dart';
+export 'src/date_time_relative.dart';
 
 /// Shows a dialog containing a Material Design date and time picker with
 /// extensive features such as preset ranges, relative ranges, abd custom
@@ -98,7 +99,7 @@ const Size _calendarPortraitDialogSize = Size(330.0, 475.0);
 const Size _calendarLandscapeDialogSize = Size(496.0, 346.0);
 const Duration _dialogSizeAnimationDuration = Duration(milliseconds: 200);
 
-enum _panelIndex {
+enum _PanelIndex {
   presets,
   relative,
   dateRange,
@@ -125,7 +126,7 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
   bool _latestTextEnabled = false;
   String? _relativeEarliestValue = 'y';
   String? _relativeLatestValue = 'now';
-  final _expandedPanelIndex = _panelIndex.presets.index;
+  final _expandedPanelIndex = _PanelIndex.presets.index;
   final TextEditingController _earliestController = TextEditingController();
   final TextEditingController _latestController = TextEditingController();
   Timer? _earliestTimer, _latestTimer;
@@ -529,13 +530,13 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
     return body;
   }
 
-  Widget _buildPanelBody(BuildContext context, _panelIndex index) {
+  Widget _buildPanelBody(BuildContext context, _PanelIndex index) {
     switch (index) {
-      case _panelIndex.presets:
+      case _PanelIndex.presets:
         return _buildPanelBodyPresets(context);
-      case _panelIndex.relative:
+      case _PanelIndex.relative:
         return _buildPanelBodyRelative(context);
-      case _panelIndex.dateRange:
+      case _PanelIndex.dateRange:
         return _buildPanelBodyDateRange(context);
       default:
         return const Text("_buildPanelBody: unknown index");
@@ -546,7 +547,7 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
     return ListTile(selected: false, dense: false, title: Text(_listTitles[index], style: _headStyle));
   }
 
-  ExpansionPanelRadio _buildExpansionPanel(BuildContext context, _panelIndex index) {
+  ExpansionPanelRadio _buildExpansionPanel(BuildContext context, _PanelIndex index) {
     return ExpansionPanelRadio(
       value: index.index,
       headerBuilder: (BuildContext context, bool isExpanded) => _buildPanelHeader(context, index.index),
@@ -559,9 +560,9 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
     return ExpansionPanelList.radio(
       initialOpenPanelValue: _expandedPanelIndex,
       children: [
-        _buildExpansionPanel(context, _panelIndex.presets),
-        _buildExpansionPanel(context, _panelIndex.relative),
-        _buildExpansionPanel(context, _panelIndex.dateRange)
+        _buildExpansionPanel(context, _PanelIndex.presets),
+        _buildExpansionPanel(context, _PanelIndex.relative),
+        _buildExpansionPanel(context, _PanelIndex.dateRange)
       ],
       expansionCallback: (panelIndex, isExpanded) {
         // print("expansion: $panelIndex, $isExpanded");
