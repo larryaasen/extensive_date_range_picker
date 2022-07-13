@@ -80,15 +80,24 @@ extension DateTimeRelative on DateTime? {
       return this;
     }
 
-    final jif = Jiffy.unixFromMillisecondsSinceEpoch(this!.millisecondsSinceEpoch);
+    final jif =
+        Jiffy.unixFromMillisecondsSinceEpoch(this!.millisecondsSinceEpoch);
     if (parsed.timeUnitMatch == 'd') {
-      parsed.neg! ? jif.subtract(days: parsed.timeInt!) : jif.add(days: parsed.timeInt!);
+      parsed.neg!
+          ? jif.subtract(days: parsed.timeInt!)
+          : jif.add(days: parsed.timeInt!);
     } else if (parsed.timeUnitMatch == 'w') {
-      parsed.neg! ? jif.subtract(weeks: parsed.timeInt!) : jif.add(weeks: parsed.timeInt!);
+      parsed.neg!
+          ? jif.subtract(weeks: parsed.timeInt!)
+          : jif.add(weeks: parsed.timeInt!);
     } else if (parsed.timeUnitMatch == 'm') {
-      parsed.neg! ? jif.subtract(months: parsed.timeInt!) : jif.add(months: parsed.timeInt!);
+      parsed.neg!
+          ? jif.subtract(months: parsed.timeInt!)
+          : jif.add(months: parsed.timeInt!);
     } else if (parsed.timeUnitMatch == 'y') {
-      parsed.neg! ? jif.subtract(years: parsed.timeInt!) : jif.add(years: parsed.timeInt!);
+      parsed.neg!
+          ? jif.subtract(years: parsed.timeInt!)
+          : jif.add(years: parsed.timeInt!);
     }
     if (parsed.snapTimeUnitMatch != null) {
       if (parsed.snapTimeUnitMatch == 'd') {
@@ -108,7 +117,8 @@ extension DateTimeRelative on DateTime? {
 class DateTimeRelativeParser {
   DateTimeRelativeParsed relativeParse(String? modifier) {
     if (modifier == null || modifier.isEmpty) {
-      return const DateTimeRelativeParsed(error: true, errorMessage: "modifier null or empty");
+      return const DateTimeRelativeParsed(
+          error: true, errorMessage: "modifier null or empty");
     }
 
     if (modifier == 'now') {
@@ -121,7 +131,8 @@ class DateTimeRelativeParser {
       final regex = _parseFormat;
       final match = regex.firstMatch(modifier);
       if (match == null || match.start != 0 || match.end != modifier.length) {
-        return const DateTimeRelativeParsed(error: true, errorMessage: "no match");
+        return const DateTimeRelativeParsed(
+            error: true, errorMessage: "no match");
       }
 
       final signMatch = match.namedGroup("sign");
@@ -134,7 +145,8 @@ class DateTimeRelativeParser {
       if (timeIntMatch != null && timeUnitMatch != null) {
         timeInt = int.parse(timeIntMatch);
         if (!isValidTimeUnit(timeUnitMatch)) {
-          return DateTimeRelativeParsed(error: true, errorMessage: "not valid time unit: $timeUnitMatch");
+          return DateTimeRelativeParsed(
+              error: true, errorMessage: "not valid time unit: $timeUnitMatch");
         }
       }
 
@@ -145,7 +157,8 @@ class DateTimeRelativeParser {
       if (snapTimeUnitMatch != null) {
         if (!isValidTimeUnit(snapTimeUnitMatch)) {
           return DateTimeRelativeParsed(
-              error: true, errorMessage: "not valid snap time unit: $snapTimeUnitMatch");
+              error: true,
+              errorMessage: "not valid snap time unit: $snapTimeUnitMatch");
         }
       }
 
@@ -162,7 +175,10 @@ class DateTimeRelativeParser {
   }
 
   bool isValidTimeUnit(String timeUnit) {
-    return timeUnit == 'd' || timeUnit == 'w' || timeUnit == 'm' || timeUnit == 'y';
+    return timeUnit == 'd' ||
+        timeUnit == 'w' ||
+        timeUnit == 'm' ||
+        timeUnit == 'y';
   }
 
   String timeUnitMessage(String? timeUnit, bool single) {
@@ -189,8 +205,10 @@ class DateTimeRelativeParser {
     }
   }
 
-  static const _timeModifier = r'^((?<sign>[+-]?)(?<time_int>[\d]+)(?<time_unit>[dwmy]{1}))?';
-  static const _snapTo = r'((?:[@]{1})(?<snap_sign>[+-]?)(?<snap_time_unit>[dwmy]{1}))?$';
+  static const _timeModifier =
+      r'^((?<sign>[+-]?)(?<time_int>[\d]+)(?<time_unit>[dwmy]{1}))?';
+  static const _snapTo =
+      r'((?:[@]{1})(?<snap_sign>[+-]?)(?<snap_time_unit>[dwmy]{1}))?$';
   static const _modifier = _timeModifier + _snapTo;
   static final RegExp _parseFormat = RegExp(_modifier);
 }

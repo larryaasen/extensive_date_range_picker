@@ -1,3 +1,7 @@
+## [1.1.1]
+
+- Updated files with: `flutter format .`
+
 ## [1.1.0]
 
 - Added src/date_time_relative.dart as an export.

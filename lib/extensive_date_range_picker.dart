@@ -236,7 +236,9 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
   Widget _linkButton(String data, DateTimeRangePhrase range) {
     return InkWell(
       key: ObjectKey(range),
-      child: Padding(padding: const EdgeInsets.only(bottom: 12.0), child: Text(data, style: _linkStyle)),
+      child: Padding(
+          padding: const EdgeInsets.only(bottom: 12.0),
+          child: Text(data, style: _linkStyle)),
       onTap: () {
         setState(() => _selectedRange = range);
         _handleOk();
@@ -257,7 +259,8 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
   }
 
   Widget _buildPanelBodyRelative(BuildContext context) {
-    final earliestValue = _relValue(_earliestController.text, _relativeEarliestValue);
+    final earliestValue =
+        _relValue(_earliestController.text, _relativeEarliestValue);
     final latestValue = _relValue(_latestController.text, _relativeLatestValue);
 
     final selections = Padding(
@@ -275,7 +278,8 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
                   margin: const EdgeInsets.all(0),
                   padding: const EdgeInsets.only(left: 10),
                   decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey), borderRadius: BorderRadius.circular(3)),
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(3)),
                   child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -294,7 +298,8 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
                                 if (_earliestTimer != null) {
                                   _earliestTimer!.cancel();
                                 }
-                                _earliestTimer = Timer(const Duration(milliseconds: 1000), () {
+                                _earliestTimer = Timer(
+                                    const Duration(milliseconds: 1000), () {
                                   setState(() {
                                     _earliestTimer = null;
                                   });
@@ -304,10 +309,14 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
                         DropdownButton(
                           value: _relativeEarliestValue,
                           items: const [
-                            DropdownMenuItem(value: "d", child: Text("Days Ago")),
-                            DropdownMenuItem(value: "w", child: Text("Weeks Ago")),
-                            DropdownMenuItem(value: "m", child: Text("Months Ago")),
-                            DropdownMenuItem(value: "y", child: Text("Years Ago")),
+                            DropdownMenuItem(
+                                value: "d", child: Text("Days Ago")),
+                            DropdownMenuItem(
+                                value: "w", child: Text("Weeks Ago")),
+                            DropdownMenuItem(
+                                value: "m", child: Text("Months Ago")),
+                            DropdownMenuItem(
+                                value: "y", child: Text("Years Ago")),
                           ],
                           onChanged: (dynamic value) {
                             setState(() {
@@ -319,7 +328,10 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 7, top: 1),
                 child: Text(
-                  earliestValue != null ? _dateFormat.format(DateTime.now().relative(earliestValue)!) : "",
+                  earliestValue != null
+                      ? _dateFormat
+                          .format(DateTime.now().relative(earliestValue)!)
+                      : "",
                   style: const TextStyle(fontWeight: FontWeight.w200),
                 ),
               ),
@@ -332,7 +344,8 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
                   margin: const EdgeInsets.all(2),
                   padding: const EdgeInsets.only(left: 10),
                   decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey), borderRadius: BorderRadius.circular(3)),
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(3)),
                   child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -344,14 +357,16 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
                             keyboardType: TextInputType.number,
                             autocorrect: false,
                             // autofocus: true,
-                            decoration: const InputDecoration.collapsed(hintText: ""),
+                            decoration:
+                                const InputDecoration.collapsed(hintText: ""),
                             controller: _latestController,
                             onChanged: (value) {
                               // start 1.5 sec timer, after timer fires, update message, if timer already started - stop it and restart it
                               if (_latestTimer != null) {
                                 _latestTimer!.cancel();
                               }
-                              _latestTimer = Timer(const Duration(milliseconds: 1000), () {
+                              _latestTimer =
+                                  Timer(const Duration(milliseconds: 1000), () {
                                 setState(() {
                                   _latestTimer = null;
                                 });
@@ -363,10 +378,14 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
                           value: _relativeLatestValue,
                           items: const [
                             DropdownMenuItem(value: 'now', child: Text('Now')),
-                            DropdownMenuItem(value: "d", child: Text("Days Ago")),
-                            DropdownMenuItem(value: "w", child: Text("Weeks Ago")),
-                            DropdownMenuItem(value: "m", child: Text("Months Ago")),
-                            DropdownMenuItem(value: "y", child: Text("Years Ago")),
+                            DropdownMenuItem(
+                                value: "d", child: Text("Days Ago")),
+                            DropdownMenuItem(
+                                value: "w", child: Text("Weeks Ago")),
+                            DropdownMenuItem(
+                                value: "m", child: Text("Months Ago")),
+                            DropdownMenuItem(
+                                value: "y", child: Text("Years Ago")),
                           ],
                           onChanged: (dynamic value) {
                             setState(() {
@@ -379,13 +398,17 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 7, top: 1),
                 child: Text(
-                  latestValue != null ? _dateFormat.format(DateTime.now().relative(latestValue)!) : "",
+                  latestValue != null
+                      ? _dateFormat
+                          .format(DateTime.now().relative(latestValue)!)
+                      : "",
                   style: const TextStyle(fontWeight: FontWeight.w200),
                 ),
               ),
             ]));
 
-    final body = Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+    final body =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
       selections,
       Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
         TextButton(
@@ -403,10 +426,13 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
               child: const Text("APPLY"),
               // materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               onPressed: () {
-                final earliest = _relValue(_earliestController.text, _relativeEarliestValue);
-                final latest = _relValue(_latestController.text, _relativeLatestValue);
+                final earliest =
+                    _relValue(_earliestController.text, _relativeEarliestValue);
+                final latest =
+                    _relValue(_latestController.text, _relativeLatestValue);
                 if (earliest != null && latest != null) {
-                  final range = DateTimeRangeRelative(earliest: earliest, latest: latest);
+                  final range =
+                      DateTimeRangeRelative(earliest: earliest, latest: latest);
                   setState(() => _selectedRange = range);
                   _handleOk();
                 }
@@ -417,7 +443,8 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
     return body;
   }
 
-  Future<DateTime?> _selectDate(BuildContext context, DateTime? initialDate) async {
+  Future<DateTime?> _selectDate(
+      BuildContext context, DateTime? initialDate) async {
     final DateTime? picked = await showDatePicker(
         context: context,
         initialDate: initialDate ?? DateTime.now(),
@@ -433,9 +460,12 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
     final latest = _selectedRange != null && _selectedRange!.latest != null
         ? _dateFormat.format(_selectedRange!.latest!)
         : null;
-    _earliestDate =
-        _selectedRange != null && _selectedRange!.earliest != null ? _selectedRange!.earliest : null;
-    _latestDate = _selectedRange != null && _selectedRange!.latest != null ? _selectedRange!.latest : null;
+    _earliestDate = _selectedRange != null && _selectedRange!.earliest != null
+        ? _selectedRange!.earliest
+        : null;
+    _latestDate = _selectedRange != null && _selectedRange!.latest != null
+        ? _selectedRange!.latest
+        : null;
 
     final col1 = Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -459,7 +489,8 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
               if (date != null) {
                 setState(() {
                   _earliestDate = date;
-                  _selectedRange = DateTimeRangeFixed(earliest: _earliestDate, latest: _latestDate);
+                  _selectedRange = DateTimeRangeFixed(
+                      earliest: _earliestDate, latest: _latestDate);
                 });
               }
             },
@@ -490,17 +521,20 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
                   if (date != null) {
                     setState(() {
                       _latestDate = date;
-                      _selectedRange = DateTimeRangeFixed(earliest: _earliestDate, latest: _latestDate);
+                      _selectedRange = DateTimeRangeFixed(
+                          earliest: _earliestDate, latest: _latestDate);
                     });
                   }
                 },
               )
             ]));
 
-    final selections =
-        Padding(padding: const EdgeInsets.only(left: 10), child: Row(children: <Widget>[col1, col2]));
+    final selections = Padding(
+        padding: const EdgeInsets.only(left: 10),
+        child: Row(children: <Widget>[col1, col2]));
 
-    final body = Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+    final body =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
       selections,
       Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
         TextButton(
@@ -519,7 +553,8 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
               // materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               onPressed: () {
                 if (_earliestDate != null) {
-                  final range = DateTimeRangeFixed(earliest: _earliestDate, latest: _latestDate);
+                  final range = DateTimeRangeFixed(
+                      earliest: _earliestDate, latest: _latestDate);
                   setState(() => _selectedRange = range);
                   _handleOk();
                 }
@@ -544,13 +579,18 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
   }
 
   Widget _buildPanelHeader(BuildContext context, int index) {
-    return ListTile(selected: false, dense: false, title: Text(_listTitles[index], style: _headStyle));
+    return ListTile(
+        selected: false,
+        dense: false,
+        title: Text(_listTitles[index], style: _headStyle));
   }
 
-  ExpansionPanelRadio _buildExpansionPanel(BuildContext context, _PanelIndex index) {
+  ExpansionPanelRadio _buildExpansionPanel(
+      BuildContext context, _PanelIndex index) {
     return ExpansionPanelRadio(
       value: index.index,
-      headerBuilder: (BuildContext context, bool isExpanded) => _buildPanelHeader(context, index.index),
+      headerBuilder: (BuildContext context, bool isExpanded) =>
+          _buildPanelHeader(context, index.index),
       body: _buildPanelBody(context, index),
       canTapOnHeader: true,
     );
@@ -577,7 +617,8 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
   Widget build(BuildContext context) {
     // Constrain the textScaleFactor to the largest supported value to prevent
     // layout issues.
-    final double textScaleFactor = math.min(MediaQuery.of(context).textScaleFactor, 1.3);
+    final double textScaleFactor =
+        math.min(MediaQuery.of(context).textScaleFactor, 1.3);
 
     _linkStyle = TextStyle(
         color: Colors.blue.shade900,
@@ -588,12 +629,14 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
     final DialogTheme dialogTheme = Theme.of(context).dialogTheme;
     return Dialog(
       backgroundColor: Colors.grey[200],
-      insetPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+      insetPadding:
+          const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
       // The default dialog shape is radius 2 rounded rect, but the spec has
       // been updated to 4, so we will use that here for the Date Picker, but
       // only if there isn't one provided in the theme.
       shape: dialogTheme.shape ??
-          const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4.0))),
+          const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(4.0))),
       clipBehavior: Clip.antiAlias,
       child: AnimatedContainer(
         width: dialogSize.width,

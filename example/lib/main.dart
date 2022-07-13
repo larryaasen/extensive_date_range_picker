@@ -47,8 +47,10 @@ class _MyHomePageState extends State<MyHomePage> {
               isDense: false,
               underline: Container(height: 1, color: Colors.blueAccent),
               onTap: () {
-                showDateRangeDialog(context: context, initialRange: _selectedRange)
-                    .then((range) => setState(() => _selectedRange = range ?? _selectedRange));
+                showDateRangeDialog(
+                        context: context, initialRange: _selectedRange)
+                    .then((range) => setState(
+                        () => _selectedRange = range ?? _selectedRange));
               },
             ),
           ],

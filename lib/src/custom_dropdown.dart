@@ -4,7 +4,8 @@ import 'dart:ui' show window;
 import 'package:flutter/material.dart';
 
 const double _kDenseButtonHeight = 24.0;
-const EdgeInsetsGeometry _kAlignedButtonPadding = EdgeInsetsDirectional.only(start: 16.0, end: 4.0);
+const EdgeInsetsGeometry _kAlignedButtonPadding =
+    EdgeInsetsDirectional.only(start: 16.0, end: 4.0);
 const EdgeInsets _kUnalignedButtonPadding = EdgeInsets.zero;
 
 /// A material design button for selecting from a custom widget.
@@ -269,7 +270,8 @@ class CustomDropdownButton extends StatefulWidget {
   State<CustomDropdownButton> createState() => _CustomDropdownButtonState();
 }
 
-class _CustomDropdownButtonState<T> extends State<CustomDropdownButton> with WidgetsBindingObserver {
+class _CustomDropdownButtonState<T> extends State<CustomDropdownButton>
+    with WidgetsBindingObserver {
   Orientation? _lastOrientation;
   FocusNode? _internalNode;
   FocusNode? get focusNode => widget.focusNode ?? _internalNode;
@@ -307,7 +309,8 @@ class _CustomDropdownButtonState<T> extends State<CustomDropdownButton> with Wid
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     _removeDropdownRoute();
-    WidgetsBinding.instance.focusManager.removeHighlightModeListener(_handleFocusHighlightModeChange);
+    WidgetsBinding.instance.focusManager
+        .removeHighlightModeListener(_handleFocusHighlightModeChange);
     focusNode!.removeListener(_handleFocusChanged);
     _internalNode?.dispose();
     super.dispose();
@@ -354,7 +357,8 @@ class _CustomDropdownButtonState<T> extends State<CustomDropdownButton> with Wid
     }
   }
 
-  TextStyle? get _textStyle => widget.style ?? Theme.of(context).textTheme.subtitle1;
+  TextStyle? get _textStyle =>
+      widget.style ?? Theme.of(context).textTheme.subtitle1;
 
   void _handleTap() {
     widget.onTap();
@@ -365,7 +369,8 @@ class _CustomDropdownButtonState<T> extends State<CustomDropdownButton> with Wid
   // Similarly, we don't reduce the height of the button so much that its icon
   // would be clipped.
   double get _denseButtonHeight {
-    final double fontSize = _textStyle!.fontSize ?? Theme.of(context).textTheme.subtitle1!.fontSize!;
+    final double fontSize = _textStyle!.fontSize ??
+        Theme.of(context).textTheme.subtitle1!.fontSize!;
     return math.max(fontSize, math.max(widget.iconSize, _kDenseButtonHeight));
   }
 
@@ -403,7 +408,9 @@ class _CustomDropdownButtonState<T> extends State<CustomDropdownButton> with Wid
       // If there's no MediaQuery, then use the window aspect to determine
       // orientation.
       final Size size = window.physicalSize;
-      result = size.width > size.height ? Orientation.landscape : Orientation.portrait;
+      result = size.width > size.height
+          ? Orientation.landscape
+          : Orientation.portrait;
     }
     return result;
   }
@@ -434,8 +441,10 @@ class _CustomDropdownButtonState<T> extends State<CustomDropdownButton> with Wid
 
     if (widget.value != null) {
       innerItemsWidget = Text(widget.value!);
-    } else if (widget.hint != null || (!_enabled && widget.disabledHint != null)) {
-      Widget displayedHint = _enabled ? Text(widget.hint!) : Text(widget.disabledHint!);
+    } else if (widget.hint != null ||
+        (!_enabled && widget.disabledHint != null)) {
+      Widget displayedHint =
+          _enabled ? Text(widget.hint!) : Text(widget.disabledHint!);
 
       innerItemsWidget = DefaultTextStyle(
         style: _textStyle!.copyWith(color: Theme.of(context).hintColor),
@@ -448,10 +457,12 @@ class _CustomDropdownButtonState<T> extends State<CustomDropdownButton> with Wid
       innerItemsWidget = Container();
     }
 
-    innerItemsWidget = SizedBox(height: widget.itemHeight, child: Align(child: innerItemsWidget));
+    innerItemsWidget = SizedBox(
+        height: widget.itemHeight, child: Align(child: innerItemsWidget));
 
-    final EdgeInsetsGeometry padding =
-        ButtonTheme.of(context).alignedDropdown ? _kAlignedButtonPadding : _kUnalignedButtonPadding;
+    final EdgeInsetsGeometry padding = ButtonTheme.of(context).alignedDropdown
+        ? _kAlignedButtonPadding
+        : _kUnalignedButtonPadding;
 
     const Icon defaultIcon = Icon(Icons.arrow_drop_down);
 
@@ -470,7 +481,10 @@ class _CustomDropdownButtonState<T> extends State<CustomDropdownButton> with Wid
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            if (widget.isExpanded) Expanded(child: innerItemsWidget) else innerItemsWidget,
+            if (widget.isExpanded)
+              Expanded(child: innerItemsWidget)
+            else
+              innerItemsWidget,
             IconTheme(
               data: IconThemeData(
                 color: _iconColor,

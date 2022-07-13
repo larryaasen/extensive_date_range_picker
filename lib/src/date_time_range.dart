@@ -20,8 +20,11 @@ class DateTimeRangeFixed implements DateTimeRangePhrase {
 
   @override
   String phrase() {
-    final early = earliest == null ? 'now' : DateTimeRangePhrase.dateFormat.format(earliest!);
-    final late = latest == null ? 'now' : DateTimeRangePhrase.dateFormat.format(latest!);
+    final early = earliest == null
+        ? 'now'
+        : DateTimeRangePhrase.dateFormat.format(earliest!);
+    final late =
+        latest == null ? 'now' : DateTimeRangePhrase.dateFormat.format(latest!);
     return "$early - $late";
   }
 
@@ -53,7 +56,8 @@ class DateTimeRangeRelative implements DateTimeRangePhrase {
   @override
   DateTime? get latest => (base ?? DateTime.now()).relative(_latest);
 
-  const DateTimeRangeRelative({required String earliest, required String latest, this.base})
+  const DateTimeRangeRelative(
+      {required String earliest, required String latest, this.base})
       : _earliest = earliest,
         _latest = latest;
 
@@ -75,13 +79,15 @@ class DateTimeRangeRelative implements DateTimeRangePhrase {
       return "now";
     } else if (parsedLatest.now &&
         parsedEarliest.neg! &&
-        (parsedEarliest.snapTimeUnitMatch == null || parsedEarliest.snapTimeUnitMatch == 'd')) {
+        (parsedEarliest.snapTimeUnitMatch == null ||
+            parsedEarliest.snapTimeUnitMatch == 'd')) {
       prefix = "Last";
       count = parsedEarliest.timeInt;
       suffix = parser.timeUnitMessage(parsedEarliest.timeUnitMatch, count == 1);
     } else if (parsedEarliest.now &&
         !parsedLatest.neg! &&
-        (parsedLatest.snapTimeUnitMatch == null || parsedLatest.snapTimeUnitMatch == 'd')) {
+        (parsedLatest.snapTimeUnitMatch == null ||
+            parsedLatest.snapTimeUnitMatch == 'd')) {
       prefix = "Next";
       count = parsedLatest.timeInt;
       suffix = parser.timeUnitMessage(parsedLatest.timeUnitMatch, count == 1);
@@ -102,8 +108,12 @@ class DateTimeRangeRelative implements DateTimeRangePhrase {
     } else {
       final earliest = this.earliest;
       final latest = this.latest;
-      final early = earliest == null ? 'now' : DateTimeRangePhrase.dateFormat.format(earliest);
-      final late = latest == null ? 'now' : DateTimeRangePhrase.dateFormat.format(latest);
+      final early = earliest == null
+          ? 'now'
+          : DateTimeRangePhrase.dateFormat.format(earliest);
+      final late = latest == null
+          ? 'now'
+          : DateTimeRangePhrase.dateFormat.format(latest);
       return "$early - $late";
     }
 
@@ -140,20 +150,36 @@ class DateTimeRangeRelative implements DateTimeRangePhrase {
 /// * [allTime] - all time
 ///
 class DateTimeRangePreset {
-  static const last7Days = DateTimeRangeRelative(earliest: "-7d@-d", latest: "now");
-  static const last30Days = DateTimeRangeRelative(earliest: "-30d@-d", latest: "now");
-  static const last3Months = DateTimeRangeRelative(earliest: "-3m@-d", latest: "now");
-  static const last6Months = DateTimeRangeRelative(earliest: "-6m@-d", latest: "now");
-  static const last9Months = DateTimeRangeRelative(earliest: "-9m@-d", latest: "now");
-  static const last12Months = DateTimeRangeRelative(earliest: "-12m@-d", latest: "now");
-  static const last5Years = DateTimeRangeRelative(earliest: "-5y@-d", latest: "now");
-  static const last10Years = DateTimeRangeRelative(earliest: "-10y@-d", latest: "now");
-  static const last15Years = DateTimeRangeRelative(earliest: "-15y@-d", latest: "now");
-  static const last20Years = DateTimeRangeRelative(earliest: "-20y@-d", latest: "now");
-  static const last25Years = DateTimeRangeRelative(earliest: "-25y@-d", latest: "now");
-  static const last30Years = DateTimeRangeRelative(earliest: "-30y@-d", latest: "now");
-  static const prevWeek = DateTimeRangeRelative(earliest: "-1w@-w", latest: "-1w@w");
-  static const prevMonth = DateTimeRangeRelative(earliest: "-1m@-m", latest: "-1m@m");
-  static const prevYear = DateTimeRangeRelative(earliest: "-1y@-y", latest: "-1y@y");
-  static const allTime = DateTimeRangeRelative(earliest: "-9999y@-y", latest: "now");
+  static const last7Days =
+      DateTimeRangeRelative(earliest: "-7d@-d", latest: "now");
+  static const last30Days =
+      DateTimeRangeRelative(earliest: "-30d@-d", latest: "now");
+  static const last3Months =
+      DateTimeRangeRelative(earliest: "-3m@-d", latest: "now");
+  static const last6Months =
+      DateTimeRangeRelative(earliest: "-6m@-d", latest: "now");
+  static const last9Months =
+      DateTimeRangeRelative(earliest: "-9m@-d", latest: "now");
+  static const last12Months =
+      DateTimeRangeRelative(earliest: "-12m@-d", latest: "now");
+  static const last5Years =
+      DateTimeRangeRelative(earliest: "-5y@-d", latest: "now");
+  static const last10Years =
+      DateTimeRangeRelative(earliest: "-10y@-d", latest: "now");
+  static const last15Years =
+      DateTimeRangeRelative(earliest: "-15y@-d", latest: "now");
+  static const last20Years =
+      DateTimeRangeRelative(earliest: "-20y@-d", latest: "now");
+  static const last25Years =
+      DateTimeRangeRelative(earliest: "-25y@-d", latest: "now");
+  static const last30Years =
+      DateTimeRangeRelative(earliest: "-30y@-d", latest: "now");
+  static const prevWeek =
+      DateTimeRangeRelative(earliest: "-1w@-w", latest: "-1w@w");
+  static const prevMonth =
+      DateTimeRangeRelative(earliest: "-1m@-m", latest: "-1m@m");
+  static const prevYear =
+      DateTimeRangeRelative(earliest: "-1y@-y", latest: "-1y@y");
+  static const allTime =
+      DateTimeRangeRelative(earliest: "-9999y@-y", latest: "now");
 }

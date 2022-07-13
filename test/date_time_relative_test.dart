@@ -8,7 +8,8 @@ void main() {
   final tzName = now.timeZoneName;
   final tzOffset = now.timeZoneOffset;
   final isUTC = tzOffset.inHours == 0 && tzOffset.inMinutes == 0;
-  print('Time zone name: $tzName, isUTC=$isUTC, utc=${now.isUtc}, offset=$tzOffset');
+  print(
+      'Time zone name: $tzName, isUTC=$isUTC, utc=${now.isUtc}, offset=$tzOffset');
 
   test('test days - daylight saving time', () {
     if (!isUTC) {
@@ -17,7 +18,8 @@ void main() {
 
       expect(DateTime(2021, 3, 18).relative("-4d"), DateTime(2021, 3, 13, 23));
       expect(DateTime(2021, 3, 18).relative("-3d"), DateTime(2021, 3, 15));
-      expect(DateTime(2021, 3, 18, 12).relative("-4d"), DateTime(2021, 3, 14, 12));
+      expect(
+          DateTime(2021, 3, 18, 12).relative("-4d"), DateTime(2021, 3, 14, 12));
 
       final d1 = DateTime.utc(2021, 3, 18).relative("-4d");
       expect(d1, isNotNull);
@@ -157,7 +159,8 @@ void main() {
     expect(date.relative("-2y@y"), DateTime(2018, 12, 31, 23, 59, 59, 999));
     expect(date.relative("-2y@+y"), DateTime(2018, 12, 31, 23, 59, 59, 999));
     expect(date.relative("-2y@-y"), DateTime(2018, 1, 1));
-    expect(DateTime(2001, 9, 16).relative("-5d"), DateTime(2001, 9, 11)); // 9/11
+    expect(
+        DateTime(2001, 9, 16).relative("-5d"), DateTime(2001, 9, 11)); // 9/11
   });
 
   test('test modifier and snap', () {
@@ -167,13 +170,22 @@ void main() {
 
   test('test combinations', () {
     final date = DateTime(2017, 9, 7, 17, 30); // ==> 09/07/2017 17:30:00
-    final newDate = date.relative("-1y").relative("-1m").relative("+1d").relative("+2m").relative("1m");
+    final newDate = date
+        .relative("-1y")
+        .relative("-1m")
+        .relative("+1d")
+        .relative("+2m")
+        .relative("1m");
     expect(newDate, DateTime(2016, 11, 8, 17, 30));
   });
 
   test('test combinations with snap', () {
     final date = DateTime(2017, 9, 10, 17, 30); // ==> 09/10/2017 17:30:00
-    final newDate = date.relative("-1y@-w").relative("-1m").relative("+1d").relative("-7d@m");
+    final newDate = date
+        .relative("-1y@-w")
+        .relative("-1m")
+        .relative("+1d")
+        .relative("-7d@m");
     expect(newDate, DateTime(2016, 7, 31, 23, 59, 59, 999));
   });
 
