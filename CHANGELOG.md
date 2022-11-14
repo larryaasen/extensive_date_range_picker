@@ -1,3 +1,7 @@
+## [1.1.2]
+
+- Updated example and README.
+
 ## [1.1.1]
 
 - Updated files with: `flutter format .`

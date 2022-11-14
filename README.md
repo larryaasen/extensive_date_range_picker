@@ -1,13 +1,15 @@
 # extensive_date_range_picker
 
-Flutter widget that provides an extensive date and time range picker.
-
 [![Build Status](https://travis-ci.com/larryaasen/extensive_date_range_picker.svg?branch=main)](https://app.travis-ci.com/github/larryaasen/extensive_date_range_picker)
 [![codecov](https://codecov.io/gh/larryaasen/extensive_date_range_picker/branch/main/graph/badge.svg)](https://app.codecov.io/gh/larryaasen/extensive_date_range_picker)
 [![pub package](https://img.shields.io/pub/v/extensive_date_range_picker.svg)](https://pub.dev/packages/extensive_date_range_picker)
 <a href="https://www.buymeacoffee.com/larryaasen">
   <img alt="Gift me a coffee" src="https://img.shields.io/badge/Donate-Gift%20Me%20A%20Coffee-yellow.svg">
 </a>
+
+A Flutter widget that provides an extensive date and time range picker.
+
+## Overview
 
 Works on Android, iOS, desktop, and web.
 
@@ -98,3 +100,10 @@ This widget is currently used in the US Debt Now app on
 [Android](https://play.google.com/store/apps/details?id=com.moonwink.treasury)
 and [iOS](https://apps.apple.com/us/app/id903781928), and as seen on
 [It's All Widgets!](https://itsallwidgets.com/debt-now).
+
+## Contributing
+All [comments](https://github.com/larryaasen/extensive_date_range_picker/issues) and [pull requests](https://github.com/larryaasen/extensive_date_range_picker/pulls) are welcome.
+
+## Donations / Sponsor
+
+Please sponsor or donate to the creator on [Flattr](https://flattr.com/@larryaasen) or [Patreon](https://www.patreon.com/larryaasen).

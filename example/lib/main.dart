@@ -28,7 +28,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  DateTimeRangePhrase _selectedRange = DateTimeRangePreset.allTime;
+  DateTimeRangePhrase _selectedRange = DateTimeRangePreset.prevYear;
 
   @override
   Widget build(BuildContext context) {
