@@ -1,3 +1,11 @@
+## [1.1.3]
+
+- Updated branch name to make README images display.
+When a package is published on http://pub.dev and it includes a screenshot in
+the README, the package is published with a path to the image on GitHub.
+It assumes the image is on branch master. My package used a branch named main,
+so the images didn't show. Now, I use branch master.
+
 ## [1.1.2]
 
 - Updated example and README.
