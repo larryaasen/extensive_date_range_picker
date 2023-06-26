@@ -1,3 +1,7 @@
+## [1.2.0]
+
+- Minor updates for Flutter 3.10.0.
+
 ## [1.1.3]
 
 - Updated branch name to make README images display.

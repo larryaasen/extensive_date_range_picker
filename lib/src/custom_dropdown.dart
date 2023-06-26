@@ -1,5 +1,4 @@
 import 'dart:math' as math;
-import 'dart:ui' show window;
 
 import 'package:flutter/material.dart';
 
@@ -188,7 +187,7 @@ class CustomDropdownButton extends StatefulWidget {
   /// ```
   /// {@end-tool}
   ///
-  /// Defaults to the [TextTheme.subtitle1] value of the current
+  /// Defaults to the [TextTheme.titleMedium] value of the current
   /// [ThemeData.textTheme] of the current [Theme].
   final TextStyle? style;
 
@@ -358,7 +357,7 @@ class _CustomDropdownButtonState<T> extends State<CustomDropdownButton>
   }
 
   TextStyle? get _textStyle =>
-      widget.style ?? Theme.of(context).textTheme.subtitle1;
+      widget.style ?? Theme.of(context).textTheme.titleMedium;
 
   void _handleTap() {
     widget.onTap();
@@ -370,7 +369,7 @@ class _CustomDropdownButtonState<T> extends State<CustomDropdownButton>
   // would be clipped.
   double get _denseButtonHeight {
     final double fontSize = _textStyle!.fontSize ??
-        Theme.of(context).textTheme.subtitle1!.fontSize!;
+        Theme.of(context).textTheme.titleMedium!.fontSize!;
     return math.max(fontSize, math.max(widget.iconSize, _kDenseButtonHeight));
   }
 
@@ -407,7 +406,7 @@ class _CustomDropdownButtonState<T> extends State<CustomDropdownButton>
     } on Exception {
       // If there's no MediaQuery, then use the window aspect to determine
       // orientation.
-      final Size size = window.physicalSize;
+      final Size size = View.of(context).physicalSize;
       result = size.width > size.height
           ? Orientation.landscape
           : Orientation.portrait;

@@ -622,8 +622,8 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
 
     _linkStyle = TextStyle(
         color: Colors.blue.shade900,
-        fontSize: Theme.of(context).textTheme.button!.fontSize,
-        fontWeight: Theme.of(context).textTheme.button!.fontWeight);
+        fontSize: Theme.of(context).textTheme.labelLarge!.fontSize,
+        fontWeight: Theme.of(context).textTheme.labelLarge!.fontWeight);
 
     final Size dialogSize = _dialogSize(context) * textScaleFactor;
     final DialogTheme dialogTheme = Theme.of(context).dialogTheme;
