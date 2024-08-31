@@ -57,7 +57,7 @@ void main() {
     final dt = DateTime(2017, 9, 7, 17, 30); // ==> 09/07/2017 17:30:00
     expect(dt.relative("-0d"), DateTime(2017, 9, 7, 17, 30));
     expect(dt.relative("-0a"), isNull);
-    expect(dt.relative("@+d"), DateTime(2017, 9, 7, 23, 59, 59, 999));
+    expect(dt.relative("@+d"), DateTime(2017, 9, 7, 23, 59, 59, 999, 999));
     expect(dt.relative("@+a"), isNull);
   });
 
@@ -131,33 +131,37 @@ void main() {
 
   test('test snap only', () {
     final date = DateTime(2020, 6, 5, 20, 30); // ==> 06/05/2020 20:30:00
-    expect(date.relative("@d"), DateTime(2020, 6, 5, 23, 59, 59, 999));
-    expect(date.relative("@+d"), DateTime(2020, 6, 5, 23, 59, 59, 999));
+    expect(date.relative("@d"), DateTime(2020, 6, 5, 23, 59, 59, 999, 999));
+    expect(date.relative("@+d"), DateTime(2020, 6, 5, 23, 59, 59, 999, 999));
     expect(date.relative("@-d"), DateTime(2020, 6, 5));
-    expect(date.relative("@w"), DateTime(2020, 6, 6, 23, 59, 59, 999));
-    expect(date.relative("@+w"), DateTime(2020, 6, 6, 23, 59, 59, 999));
+    expect(date.relative("@w"), DateTime(2020, 6, 6, 23, 59, 59, 999, 999));
+    expect(date.relative("@+w"), DateTime(2020, 6, 6, 23, 59, 59, 999, 999));
     expect(date.relative("@-w"), DateTime(2020, 5, 31));
-    expect(date.relative("@m"), DateTime(2020, 6, 30, 23, 59, 59, 999));
-    expect(date.relative("@+m"), DateTime(2020, 6, 30, 23, 59, 59, 999));
+    expect(date.relative("@m"), DateTime(2020, 6, 30, 23, 59, 59, 999, 999));
+    expect(date.relative("@+m"), DateTime(2020, 6, 30, 23, 59, 59, 999, 999));
     expect(date.relative("@-m"), DateTime(2020, 6, 1));
-    expect(date.relative("@y"), DateTime(2020, 12, 31, 23, 59, 59, 999));
-    expect(date.relative("@+y"), DateTime(2020, 12, 31, 23, 59, 59, 999));
+    expect(date.relative("@y"), DateTime(2020, 12, 31, 23, 59, 59, 999, 999));
+    expect(date.relative("@+y"), DateTime(2020, 12, 31, 23, 59, 59, 999, 999));
     expect(date.relative("@-y"), DateTime(2020, 1, 1));
   });
 
   test('test modifier and snap', () {
     final date = DateTime(2020, 6, 5, 20, 30); // ==> 06/05/2020 20:30:00
-    expect(date.relative("-2d@d"), DateTime(2020, 6, 3, 23, 59, 59, 999));
-    expect(date.relative("-2d@+d"), DateTime(2020, 6, 3, 23, 59, 59, 999));
+    expect(date.relative("-2d@d"), DateTime(2020, 6, 3, 23, 59, 59, 999, 999));
+    expect(date.relative("-2d@+d"), DateTime(2020, 6, 3, 23, 59, 59, 999, 999));
     expect(date.relative("-2d@-d"), DateTime(2020, 6, 3));
-    expect(date.relative("-2w@w"), DateTime(2020, 5, 23, 23, 59, 59, 999));
-    expect(date.relative("-2w@+w"), DateTime(2020, 5, 23, 23, 59, 59, 999));
+    expect(date.relative("-2w@w"), DateTime(2020, 5, 23, 23, 59, 59, 999, 999));
+    expect(
+        date.relative("-2w@+w"), DateTime(2020, 5, 23, 23, 59, 59, 999, 999));
     expect(date.relative("-2w@-w"), DateTime(2020, 5, 17));
-    expect(date.relative("-2m@m"), DateTime(2020, 4, 30, 23, 59, 59, 999));
-    expect(date.relative("-2m@+m"), DateTime(2020, 4, 30, 23, 59, 59, 999));
+    expect(date.relative("-2m@m"), DateTime(2020, 4, 30, 23, 59, 59, 999, 999));
+    expect(
+        date.relative("-2m@+m"), DateTime(2020, 4, 30, 23, 59, 59, 999, 999));
     expect(date.relative("-2m@-m"), DateTime(2020, 4, 1));
-    expect(date.relative("-2y@y"), DateTime(2018, 12, 31, 23, 59, 59, 999));
-    expect(date.relative("-2y@+y"), DateTime(2018, 12, 31, 23, 59, 59, 999));
+    expect(
+        date.relative("-2y@y"), DateTime(2018, 12, 31, 23, 59, 59, 999, 999));
+    expect(
+        date.relative("-2y@+y"), DateTime(2018, 12, 31, 23, 59, 59, 999, 999));
     expect(date.relative("-2y@-y"), DateTime(2018, 1, 1));
     expect(
         DateTime(2001, 9, 16).relative("-5d"), DateTime(2001, 9, 11)); // 9/11
@@ -165,7 +169,7 @@ void main() {
 
   test('test modifier and snap', () {
     final date = DateTime(2020, 6, 5, 20, 30); // ==> 06/05/2020 20:30:00
-    expect(date.relative("-2d@d"), DateTime(2020, 6, 3, 23, 59, 59, 999));
+    expect(date.relative("-2d@d"), DateTime(2020, 6, 3, 23, 59, 59, 999, 999));
   });
 
   test('test combinations', () {
@@ -186,7 +190,7 @@ void main() {
         .relative("-1m")
         .relative("+1d")
         .relative("-7d@m");
-    expect(newDate, DateTime(2016, 7, 31, 23, 59, 59, 999));
+    expect(newDate, DateTime(2016, 7, 31, 23, 59, 59, 999, 999));
   });
 
   test('test errors', () {

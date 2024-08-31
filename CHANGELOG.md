@@ -1,3 +1,7 @@
+## 2.0.0
+
+- Updated jiffy dependency from ^5.0.1 to ^6.0.0, and fixed compile issues, and fixed test issues.
+
 ## 1.3.0
 
 - Minor updates due to upgrading Flutter.

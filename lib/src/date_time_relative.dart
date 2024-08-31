@@ -80,34 +80,34 @@ extension DateTimeRelative on DateTime? {
       return this;
     }
 
-    final jif =
-        Jiffy.unixFromMillisecondsSinceEpoch(this!.millisecondsSinceEpoch);
+    var jif =
+        Jiffy.parseFromMillisecondsSinceEpoch(this!.millisecondsSinceEpoch);
     if (parsed.timeUnitMatch == 'd') {
-      parsed.neg!
+      jif = parsed.neg!
           ? jif.subtract(days: parsed.timeInt!)
           : jif.add(days: parsed.timeInt!);
     } else if (parsed.timeUnitMatch == 'w') {
-      parsed.neg!
+      jif = parsed.neg!
           ? jif.subtract(weeks: parsed.timeInt!)
           : jif.add(weeks: parsed.timeInt!);
     } else if (parsed.timeUnitMatch == 'm') {
-      parsed.neg!
+      jif = parsed.neg!
           ? jif.subtract(months: parsed.timeInt!)
           : jif.add(months: parsed.timeInt!);
     } else if (parsed.timeUnitMatch == 'y') {
-      parsed.neg!
+      jif = parsed.neg!
           ? jif.subtract(years: parsed.timeInt!)
           : jif.add(years: parsed.timeInt!);
     }
     if (parsed.snapTimeUnitMatch != null) {
       if (parsed.snapTimeUnitMatch == 'd') {
-        parsed.snapNeg ? jif.startOf(Units.DAY) : jif.endOf(Units.DAY);
+        jif = parsed.snapNeg ? jif.startOf(Unit.day) : jif.endOf(Unit.day);
       } else if (parsed.snapTimeUnitMatch == 'w') {
-        parsed.snapNeg ? jif.startOf(Units.WEEK) : jif.endOf(Units.WEEK);
+        jif = parsed.snapNeg ? jif.startOf(Unit.week) : jif.endOf(Unit.week);
       } else if (parsed.snapTimeUnitMatch == 'm') {
-        parsed.snapNeg ? jif.startOf(Units.MONTH) : jif.endOf(Units.MONTH);
+        jif = parsed.snapNeg ? jif.startOf(Unit.month) : jif.endOf(Unit.month);
       } else if (parsed.snapTimeUnitMatch == 'y') {
-        parsed.snapNeg ? jif.startOf(Units.YEAR) : jif.endOf(Units.YEAR);
+        jif = parsed.snapNeg ? jif.startOf(Unit.year) : jif.endOf(Unit.year);
       }
     }
     return jif.dateTime;
