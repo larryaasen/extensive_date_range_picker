@@ -1,6 +1,5 @@
 # extensive_date_range_picker
 
-[![Build Status](https://travis-ci.com/larryaasen/extensive_date_range_picker.svg?branch=main)](https://app.travis-ci.com/github/larryaasen/extensive_date_range_picker)
 [![codecov](https://codecov.io/gh/larryaasen/extensive_date_range_picker/branch/main/graph/badge.svg)](https://app.codecov.io/gh/larryaasen/extensive_date_range_picker)
 [![pub package](https://img.shields.io/pub/v/extensive_date_range_picker.svg)](https://pub.dev/packages/extensive_date_range_picker)
 <a href="https://www.buymeacoffee.com/larryaasen">
