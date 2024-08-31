@@ -1,7 +1,6 @@
 library extensive_date_range_picker;
 
 import 'dart:async';
-import 'dart:math' as math;
 import 'dart:ui' as ui show TextDirection;
 
 import 'package:extensive_date_range_picker/src/date_time_relative.dart';
@@ -197,17 +196,6 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
                 _linkButton("Previous week", DateTimeRangePreset.prevWeek),
                 _linkButton("Previous month", DateTimeRangePreset.prevMonth),
                 _linkButton("Previous year", DateTimeRangePreset.prevYear),
-              ],
-            )),
-        Padding(
-            padding: const EdgeInsets.fromLTRB(10, 2, 10, 0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 7),
-                  child: Text("OTHER", style: _headStyle),
-                ),
                 _linkButton("All time", DateTimeRangePreset.allTime)
               ],
             )),
@@ -615,18 +603,18 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
 
   @override
   Widget build(BuildContext context) {
-    // Constrain the textScaleFactor to the largest supported value to prevent
-    // layout issues.
-    final double textScaleFactor =
-        math.min(MediaQuery.of(context).textScaleFactor, 1.3);
-
     _linkStyle = TextStyle(
         color: Colors.blue.shade900,
         fontSize: Theme.of(context).textTheme.labelLarge!.fontSize,
         fontWeight: Theme.of(context).textTheme.labelLarge!.fontWeight);
 
-    final Size dialogSize = _dialogSize(context) * textScaleFactor;
-    final DialogTheme dialogTheme = Theme.of(context).dialogTheme;
+    // Constrain the textScaleFactor to the largest supported value to prevent
+    // layout issues.
+    final dialogSize = _dialogSize(context);
+    final width = dialogSize.width;
+    final height = dialogSize.height;
+
+    final dialogTheme = Theme.of(context).dialogTheme;
     return Dialog(
       backgroundColor: Colors.grey[200],
       insetPadding:
@@ -639,22 +627,17 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
               borderRadius: BorderRadius.all(Radius.circular(4.0))),
       clipBehavior: Clip.antiAlias,
       child: AnimatedContainer(
-        width: dialogSize.width,
-        height: dialogSize.height,
+        width: width,
+        height: height,
         duration: _dialogSizeAnimationDuration,
         curve: Curves.easeIn,
-        child: MediaQuery(
-          data: MediaQuery.of(context).copyWith(
-            textScaleFactor: textScaleFactor,
-          ),
-          child: Builder(builder: (BuildContext context) {
-            return SingleChildScrollView(
-              child: Container(
-                child: _buildPanel(context),
-              ),
-            );
-          }),
-        ),
+        child: Builder(builder: (BuildContext context) {
+          return SingleChildScrollView(
+            child: Container(
+              child: _buildPanel(context),
+            ),
+          );
+        }),
       ),
     );
   }

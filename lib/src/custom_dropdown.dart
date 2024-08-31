@@ -48,7 +48,6 @@ const EdgeInsets _kUnalignedButtonPadding = EdgeInsets.zero;
 ///   );
 /// }
 /// ```
-/// {@end-tool}
 ///
 /// If the [onTap] callback is null or the list of [items] is null
 /// then the dropdown button will be disabled, i.e. its arrow will be
@@ -185,7 +184,6 @@ class CustomDropdownButton extends StatefulWidget {
   ///   );
   /// }
   /// ```
-  /// {@end-tool}
   ///
   /// Defaults to the [TextTheme.titleMedium] value of the current
   /// [ThemeData.textTheme] of the current [Theme].
@@ -448,7 +446,6 @@ class _CustomDropdownButtonState<T> extends State<CustomDropdownButton>
       innerItemsWidget = DefaultTextStyle(
         style: _textStyle!.copyWith(color: Theme.of(context).hintColor),
         child: IgnorePointer(
-          ignoringSemantics: false,
           child: displayedHint,
         ),
       );

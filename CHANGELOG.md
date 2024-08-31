@@ -1,3 +1,8 @@
+## [1.3.0]
+
+- Minor updates due to upgrading Flutter.
+- Updated the intl dependency to '>=0.18.0 <1.0.0' to include 0.19.0.
+
 ## [1.2.0]
 
 - Minor updates for Flutter 3.10.0.
